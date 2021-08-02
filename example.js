@@ -9,8 +9,14 @@ const writeStream = fs.createWriteStream('dict.txt')
 const dstream = fs.createReadStream(dfile).pipe(gunzip())
 const istream = fs.createReadStream(ifile)
 
-parse(dstream, istream).on('data', data => {
+const parsing = parse(dstream, istream)
+
+parsing.on('data', data => {
     writeStream.write(data.from + ' ' + data.to + '\n', 'utf8')
+})
+
+parsing.on('end', () => {
+    console.log('finished!')
 })
 
 const word = 'a'

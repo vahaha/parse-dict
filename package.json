@@ -1,6 +1,6 @@
 {
   "name": "@vahaha/parse-dict",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Parse dict (in DICT format - dict.org) and convert to json",
   "main": "index.js",
   "keywords": [

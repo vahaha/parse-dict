@@ -18,7 +18,8 @@ exports = module.exports = function (dstream, istream) {
     let maxIndexOffer = 0
 
     const output = through.obj(dwrite)
-    return readonly(output)
+    const parse = readonly(output)
+    return parse
 
     function iwrite(buf, enc, next) {
         const fields = buf.toString('utf8').split('\t')
@@ -50,7 +51,7 @@ exports = module.exports = function (dstream, istream) {
 
             indexOffer += 1
             if (indexOffer > maxIndexOffer) {
-                return
+                return parse.emit('end')
             }
 
             offset = arrOffers[indexOffer]
